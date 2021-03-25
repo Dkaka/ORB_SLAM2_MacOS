@@ -1,7 +1,7 @@
 # ORB-SLAM2 - For Mac
 This version is provided for consistency with https://github.com/JingwenWang95/ORB_SLAM2.
 
-The mono_kitti executable has been modified to shift the computation onto its own thread, following the modification shown in mono_tum.
+The `mono_kitti` executable has been modified to shift the computation onto its own thread, following the modification shown in `mono_tum`.
 
 The executable arguments for mono_kitti and mono_tum have changed to 4 arguments, with the last argument specifying the result trajectory file path. 
 
@@ -15,13 +15,13 @@ An example of executing the kitti 07 sequence (stored outside OrbSLAM2 folder) a
 
 #### Dependencies:
 
-It was tested on macOS Big Sur 11.2.2 with Xcode version 12.4. Xcode Command-Line-Tool is required.
+It was tested on macOS Big Sur 11.2.2 with Xcode version 12.4. Xcode Command-Line-Tool is required. (Latest version as of 25/03/2021, Xcode version should match system version.)
 
 ##### OpenCV:
 
-(Tested under Opencv version 3.4.13. Installed through Homebrew using brew install opencv@3)
+(Tested under Opencv version 3.4.13. Installed through Homebrew using `brew install opencv@3`)
 
-Use brew info opencv@3 and follow the instructions to add OpenCV to your PATH.
+Use `brew info opencv@3` and follow the instructions to add OpenCV to your `PATH`.
 
 ##### Others:
 
