@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 {
     if(argc != 4)
     {
-        cerr << endl << "Usage: ./mono_tum path_to_vocabulary path_to_settings path_to_sequence" << endl;
+        cerr << endl << "Usage: ./mono_tum path_to_vocabulary path_to_settings path_to_sequence path_to_sequence path_to_trajectory_result_file(*.txt should work)" << endl;
         return 1;
     }
 
@@ -137,8 +137,8 @@ int main(int argc, char **argv)
 
     // Save camera trajectory
     // SLAM.SaveTrajectoryTUM(strFile + "/FrameTrajectory.txt");
-    SLAM.SaveKeyFrameTrajectoryTUM(string(argv[3]) + "/KeyFrameTrajectory.txt");
-
+    //SLAM.SaveKeyFrameTrajectoryTUM(string(argv[3]) + "/KeyFrameTrajectory.txt");
+    SLAM.SaveTrajectoryTUM(string(argv[4]));
     return 0;
 }
 

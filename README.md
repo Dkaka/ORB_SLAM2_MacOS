@@ -1,4 +1,40 @@
 # ORB-SLAM2 - For Mac
+This version is provided for consistency with https://github.com/JingwenWang95/ORB_SLAM2.
+
+The mono_kitti executable has been modified to shift the computation onto its own thread, following the modification shown in mono_tum.
+
+The executable arguments for mono_kitti and mono_tum have changed to 4 arguments, with the last argument specifying the result trajectory file path. 
+
+An example of executing the kitti 07 sequence (stored outside OrbSLAM2 folder) and save the trajectory result on your desktop (**Terrible habit! Please do not follow!**):
+
+`./Examples/Monocular/mono_kitti ./Vocabulary/ORBvoc.txt ./Examples/Monocular/KITTI04-12.yaml ../07 ~/Desktop/trajectory1.txt`
+
+#### How to compile 
+
+`./build.sh`
+
+#### Dependencies:
+
+It was tested on macOS Big Sur 11.2.2 with Xcode version 12.4. Xcode Command-Line-Tool is required.
+
+##### OpenCV:
+
+(Tested under Opencv version 3.4.13. Installed through Homebrew using brew install opencv@3)
+
+Use brew info opencv@3 and follow the instructions to add OpenCV to your PATH.
+
+##### Others:
+
+Please install other dependencies as well, most of which can be installed through HomeBrew. But Pangolin, for instance, needs to be compiled from source, with its dependencies installed.
+
+
+
+
+
+# ORB-SLAM2 - For Mac - Original Text
+
+
+
 This fork has been modified to be compatible on Mac systems. With required packages installed via Brew, this works out of the box for me.
 
 One of the main issues on MacOS was Pangolin needing to run on the main thread. Currently only the `mono_tum` executable has been modified to shift the computation onto its own thread, and keep Pangolin on the main thread. If you need this for other executables, it should be pretty straightforward following what I've done in `mono_tum.cc`.
@@ -176,21 +212,21 @@ This will create **libORB_SLAM2.so**  at *lib* folder and the executables **mono
   ```
   export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:PATH/ORB_SLAM2/Examples/ROS
   ```
-  
+
 2. Execute `build_ros.sh` script:
 
   ```
   chmod +x build_ros.sh
   ./build_ros.sh
   ```
-  
+
 ### Running Monocular Node
 For a monocular input from topic `/camera/image_raw` run node ORB_SLAM2/Mono. You will need to provide the vocabulary file and a settings file. See the monocular examples above.
 
   ```
   rosrun ORB_SLAM2 Mono PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE
   ```
-  
+
 ### Running Monocular Augmented Reality Demo
 This is a demo of augmented reality where you can use an interface to insert virtual cubes in planar regions of the scene.
 The node reads images from topic `/camera/image_raw`.
@@ -198,27 +234,27 @@ The node reads images from topic `/camera/image_raw`.
   ```
   rosrun ORB_SLAM2 MonoAR PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE
   ```
-  
+
 ### Running Stereo Node
 For a stereo input from topic `/camera/left/image_raw` and `/camera/right/image_raw` run node ORB_SLAM2/Stereo. You will need to provide the vocabulary file and a settings file. If you **provide rectification matrices** (see Examples/Stereo/EuRoC.yaml example), the node will recitify the images online, **otherwise images must be pre-rectified**.
 
   ```
   rosrun ORB_SLAM2 Stereo PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE ONLINE_RECTIFICATION
   ```
-  
+
 **Example**: Download a rosbag (e.g. V1_01_easy.bag) from the EuRoC dataset (http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets). Open 3 tabs on the terminal and run the following command at each tab:
   ```
   roscore
   ```
-  
+
   ```
   rosrun ORB_SLAM2 Stereo Vocabulary/ORBvoc.txt Examples/Stereo/EuRoC.yaml true
   ```
-  
+
   ```
   rosbag play --pause V1_01_easy.bag /cam0/image_raw:=/camera/left/image_raw /cam1/image_raw:=/camera/right/image_raw
   ```
-  
+
 Once ORB-SLAM2 has loaded the vocabulary, press space in the rosbag tab. Enjoy!. Note: a powerful computer is required to run the most exigent sequences of this dataset.
 
 ### Running RGB_D Node
@@ -227,7 +263,7 @@ For an RGB-D input from topics `/camera/rgb/image_raw` and `/camera/depth_regist
   ```
   rosrun ORB_SLAM2 RGBD PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE
   ```
-  
+
 # 8. Processing your own sequences
 You will need to create a settings file with the calibration of your camera. See the settings file provided for the TUM and KITTI datasets for monocular, stereo and RGB-D cameras. We use the calibration model of OpenCV. See the examples to learn how to create a program that makes use of the ORB-SLAM2 library and how to pass images to the SLAM system. Stereo input must be synchronized and rectified. RGB-D input must be synchronized and depth registered.
 

@@ -37,9 +37,9 @@ void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
 
 int main(int argc, char **argv)
 {
-    if(argc != 4)
+    if(argc != 5)
     {
-        cerr << endl << "Usage: ./mono_kitti path_to_vocabulary path_to_settings path_to_sequence" << endl;
+        cerr << endl << "Usage: ./mono_kitti path_to_vocabulary path_to_settings path_to_sequence path_to_trajectory_result_file(*.txt should work)" << endl;
         return 1;
     }
 
@@ -62,6 +62,8 @@ int main(int argc, char **argv)
     cout << "Images in the sequence: " << nImages << endl << endl;
 
     // Main loop
+    int main_error = 0;
+    std::thread runthread([&]() {  // Start in new thread
     cv::Mat im;
     for(int ni=0; ni<nImages; ni++)
     {
@@ -72,7 +74,8 @@ int main(int argc, char **argv)
         if(im.empty())
         {
             cerr << endl << "Failed to load image at: " << vstrImageFilenames[ni] << endl;
-            return 1;
+             main_error = 1;
+            return;
         }
 
 #ifdef COMPILEDWITHC11
@@ -104,9 +107,21 @@ int main(int argc, char **argv)
         if(ttrack<T)
             usleep((T-ttrack)*1e6);
     }
+    // SLAM.Shutdown();
+    }); // End the thread
+
+    // Start the visualization thread
+    SLAM.StartViewer();
+
+    cout << "Viewer started, waiting for thread." << endl;
+    runthread.join();
+    if (main_error != 0)
+        return main_error;
+    cout << "Tracking thread joined..." << endl;
 
     // Stop all threads
     SLAM.Shutdown();
+    cout << "System Shutdown" << endl;
 
     // Tracking time statistics
     sort(vTimesTrack.begin(),vTimesTrack.end());
@@ -120,8 +135,10 @@ int main(int argc, char **argv)
     cout << "mean tracking time: " << totaltime/nImages << endl;
 
     // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");    
-
+    //SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");    
+    //SLAM.SaveTrajectoryTUM(strFile + "/FrameTrajectory.txt");
+    //SLAM.SaveKeyFrameTrajectoryTUM(string(argv[3]) + "/KeyFrameTrajectory.txt");
+    SLAM.SaveTrajectoryTUM(string(argv[4]));
     return 0;
 }
 
