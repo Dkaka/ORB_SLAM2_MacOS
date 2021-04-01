@@ -36,7 +36,7 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
 
 int main(int argc, char **argv)
 {
-    if(argc != 4)
+    if(argc != 5) // Changed this to 5 to accept the output path otherwise will crash at line 141
     {
         cerr << endl << "Usage: ./mono_tum path_to_vocabulary path_to_settings path_to_sequence path_to_sequence path_to_trajectory_result_file(*.txt should work)" << endl;
         return 1;
