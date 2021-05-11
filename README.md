@@ -28,6 +28,40 @@ Use `brew info opencv@3` and follow the instructions to add OpenCV to your `PATH
 Please install other dependencies as well, most of which can be installed through HomeBrew. But Pangolin, for instance, needs to be compiled from source, with its dependencies installed.
 
 
+#### :star: example installation recipe:
+
+ 1. Install home-brew
+https://brew.sh
+ 2. Clone pangolin at https://github.com/stevenlovegrove/Pangolin
+ 3. `brew install cmake eigen glew pkgconfig`
+ 4. build pangolin 
+ 5. `brew install opencv@3` 
+	(take a awhile for various dependencies)
+
+	you might see the following:
+	
+	> opencv@3 is keg-only, which means it was not symlinked into
+	> /usr/local, because this is an alternate version of another formula.
+	> 
+	> If you need to have opencv@3 first in your PATH, run:   echo 'export
+	> PATH="/usr/local/opt/opencv@3/bin:$PATH"' >> ~/.zshrc
+	> 
+	> For compilers to find opencv@3 you may need to set:   export
+	> LDFLAGS="-L/usr/local/opt/opencv@3/lib"   export
+	> CPPFLAGS="-I/usr/local/opt/opencv@3/include”
+	> 
+	> For pkg-config to find opencv@3 you may need to set:   export
+	> PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
+
+	*paste in the command as shown on your machine*
+
+6.  Restart terminal 
+
+ 7.   `git clone https://github.com/Dkaka/ORB_SLAM2_MacOS`
+
+8. `cd ORB_SLAM2_MacOS`
+
+9. `./Build.sh`
 
 
 
