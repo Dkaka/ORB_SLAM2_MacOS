@@ -1,3 +1,30 @@
+# Some Results:
+Standard Run Kitti07:
+
+![kitti07_map](https://user-images.githubusercontent.com/33178694/125855386-d0635d0f-f659-4ba3-a895-acacb686ac67.png)
+
+Standard run Tum:
+
+![tum_map](https://user-images.githubusercontent.com/33178694/125855444-3f7c6d4b-9fd8-4ace-93a4-39997fd5816b.png)
+
+Kitti07 without removing outliers:
+
+![kittie07_outlier2_map](https://user-images.githubusercontent.com/33178694/125855651-7814b482-8bd2-43db-8a57-9fe4b038cb76.png)
+
+Tum without removing outliers:
+
+![tum_outlier_map](https://user-images.githubusercontent.com/33178694/125855684-81657f87-077f-4e58-8557-f97a8484ea69.png)
+
+Kitti07 with loop closure turned off:
+
+![kitti07_noloop_map](https://user-images.githubusercontent.com/33178694/125855777-5139f058-f3b7-49d7-94e4-e64536cf1f31.png)
+
+Tum without removing outliers and with loop closure turned off:
+
+![tum_outlierLoopC_map](https://user-images.githubusercontent.com/33178694/125855857-f8157b8b-a886-4d37-98fa-b473384e520c.png)
+
+
+# @ Original README
 # ORB-SLAM2 - For Mac
 This version is provided for consistency with https://github.com/JingwenWang95/ORB_SLAM2.
 
