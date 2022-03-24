@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           brew update
-          brew install brew install cmake eigen glew pkgconfig freeglut opencv@3
+          brew install cmake eigen glew pkgconfig freeglut opencv@3
 
       - name: Try compilation
         run: |
