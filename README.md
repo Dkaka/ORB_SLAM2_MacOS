@@ -1,3 +1,5 @@
+# Note that this verison will not work on latest MacOS due to pangolin compilation issue with OPENGL.
+https://github.com/stevenlovegrove/Pangolin/issues/379
 # ORB-SLAM2 - For Mac
 This version is provided for consistency with https://github.com/JingwenWang95/ORB_SLAM2.
 
