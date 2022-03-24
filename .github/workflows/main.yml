@@ -31,6 +31,12 @@ jobs:
         run: |
           brew update
           brew install cmake eigen glew pkgconfig freeglut opencv@3
+          
+      - name: Register opencv@3
+        run: |
+          export LDFLAGS="-L/usr/local/opt/opencv@3/lib"
+          export CPPFLAGS="-I/usr/local/opt/opencv@3/include"
+          export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
 
       - name: Try compilation
         run: |
